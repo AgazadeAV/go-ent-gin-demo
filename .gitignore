@@ -1,0 +1,20 @@
+ent/entclient.go
+ent/generated.go
+ent/openapi.go
+
+# Go
+*.exe
+*.log
+*.test
+*.out
+vendor/
+*.mod
+*.sum
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+*.class
