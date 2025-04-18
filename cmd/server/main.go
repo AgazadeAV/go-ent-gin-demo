@@ -10,8 +10,17 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 	"go-ent-gin-demo/ent"
 	"go-ent-gin-demo/internal/user"
+
+	"github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
+	_ "go-ent-gin-demo/docs"
 )
 
+// @title Users API
+// @version 1.0
+// @description This is a simple REST API with Gin and Ent
+// @host localhost:8080
+// @BasePath /
 func main() {
 	client, err := ent.Open("sqlite3", "file:ent.db?mode=rwc&cache=shared&_fk=1")
 	if err != nil {
@@ -31,5 +40,6 @@ func main() {
 	router := gin.Default()
 	handler.RegisterRoutes(router)
 
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	router.Run(":8080")
 }
